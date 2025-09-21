@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afif Najem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 50%, #b8e0ea 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e5e5e5;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #c41e3a 0%, #a91b32 50%, #8b1729 100%);
+            padding: 35px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            transform: translate(20px, -50px);
+        }
+
+        .card-header::after {
+            content: '✈';
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.3);
+            transform: rotate(-45deg);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-photo {
+            width: 85px;
+            height: 85px;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #c41e3a;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .department {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 400;
+        }
+
+        .card-body {
+            padding: 35px 40px;
+        }
+
+        .company-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .company-logo {
+            font-size: 32px;
+            color: #c41e3a;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .company-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .company-subtitle {
+            font-size: 14px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            padding: 16px 20px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn:hover {
+            transform: translateX(5px);
+            border-color: currentColor;
+        }
+
+        .linkedin-btn {
+            background: #f8f9fa;
+            color: #0077b5;
+            border-color: #e9ecef;
+        }
+
+        .linkedin-btn:hover {
+            background: #0077b5;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+        }
+
+        .whatsapp-btn {
+            background: #f8f9fa;
+            color: #25d366;
+            border-color: #e9ecef;
+        }
+
+        .whatsapp-btn:hover {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .mail-btn {
+            background: #f8f9fa;
+            color: #b4b48b;
+            border-color: #e9ecef;
+        }
+
+        .mail-btn:hover {
+            background: #b4b48b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(134, 150, 140, 0.3);
+        }
+
+        .company-btn {
+            background: #f8f9fa;
+            color: #c41e3a;
+            border-color: #e9ecef;
+        }
+
+        .company-btn:hover {
+            background: #c41e3a;
+            color: white;
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        .icon {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .edit-panel-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e5e5e5;
+            z-index: 1000;
+        }
+
+        .edit-btn {
+            background: #c41e3a;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .edit-btn:hover {
+            background: #a91b32;
+            transform: translateY(-2px);
+        }
+
+        .edit-panel {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+            min-width: 280px;
+        }
+
+        .edit-panel input {
+            padding: 10px 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .edit-panel input:focus {
+            outline: none;
+            border-color: #c41e3a;
+        }
+
+        .edit-panel label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 500px) {
+            .business-card {
+                margin: 10px;
+            }
+            
+            .card-header {
+                padding: 30px 25px;
+            }
+            
+            .card-body {
+                padding: 25px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .name {
+                font-size: 22px;
+            }
+            
+            .edit-panel-container {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 20px auto;
+                max-width: 400px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .business-card > * {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="business-card">
+        <div class="card-header">
+            <div class="header-content">
+                <div class="profile-photo" id="profilePhoto">
+                    <img src="img/prof.png" alt="" class="profile-photo" id="profilePhoto">
+                </div>
+                <div class="header-info">
+                    <div class="name" id="personName">Najem Afif</div>
+                    <div class="title" id="jobTitle">VP - Airworthiness and Engineering CAMO</div>
+                    <div class="department" id="department">Tunis-carthage-airport</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="company-section">
+                <div class="company-logo">✈</div>
+                <div class="company-name" id="companyName">TUNISAIR</div>
+                <div class="company-subtitle"></div>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://www.linkedin.com/in/najem-afif-546b98151/" class="contact-btn linkedin-btn" id="linkedinBtn">
+                    <span class="icon">💼</span>
+                    <span>Professional Profile</span>
+                </a>
+                
+                <a hre="tel:+21697575979" class="contact-btn whatsapp-btn" id="whatsappBtn">
+                    <span class="icon">📱</span>
+                    <span>WhatsApp Contact</span>
+                </a>
+                
+                <a href="mailto:afif.najem@gmail.com" class="contact-btn mail-btn" id="mailBtn">
+                    <span class="icon">💾</span>
+                    <span>Send Email</span>
+                </a>
+
+                <a href="https://www.tunisairtechnics.com" class="contact-btn company-btn" id="companyBtn">
+                    <span class="icon">🌐</span>
+                    <span>Tunisair Official Website</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+    </div>
+
+    <script>
+        let editMode = false;
+        
+        function toggleEdit() {
+            editMode = !editMode;
+            const panel = document.getElementById('editPanel');
+            panel.style.display = editMode ? 'flex' : 'none';
+        }
+        
+        function saveChanges() {
+            const name = document.getElementById('nameInput').value;
+            const title = document.getElementById('titleInput').value;
+            const department = document.getElementById('departmentInput').value;
+            const linkedin = document.getElementById('linkedinInput').value;
+            const whatsapp = document.getElementById('whatsappInput').value;
+            
+            // Update card content
+            document.getElementById('personName').textContent = name;
+            document.getElementById('jobTitle').textContent = title;
+            document.getElementById('department').textContent = department;
+            
+            // Update profile photo initials
+            const initials = name.split(' ').map(word => word[0]).join('').toUpperCase();
+            document.getElementById('profilePhoto').textContent = initials;
+            
+            // Update links
+            document.getElementById('linkedinBtn').href = linkedin;
+            document.getElementById('whatsappBtn').href = `https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}`;
+            
+            // Close edit panel
+            toggleEdit();
+            
+            // Show confirmation
+            const saveBtn = document.querySelector('#editPanel .edit-btn:last-child span:last-child');
+            const originalText = saveBtn.textContent;
+            saveBtn.textContent = 'Saved Successfully!';
+            setTimeout(() => {
+                saveBtn.textContent = originalText;
+            }, 2000);
+        }
+        
+        // Handle contact button clicks
+        document.getElementById('whatsappBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('whatsappInput').value;
+            window.open(`https://wa.me/${phone.replace(/[^0-9]/g, '')}`, '_blank');
+        });
+        
+        document.getElementById('linkedinBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const linkedin = document.getElementById('linkedinInput').value;
+            window.open(linkedin, '_blank');
+        });
+        
+        document.getElementById('companyBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('https://www.tunisair.com', '_blank');
+        });
+        
+        // Initialize with Tunisair colors and branding
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle animation on load
+            const card = document.querySelector('.business-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
